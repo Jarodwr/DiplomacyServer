@@ -5,7 +5,6 @@ import { combine } from 'zustand/middleware';
 import mapData from './data/standard-variant.json'
 import { AreaType } from './model/Area';
 import { MapData } from './model/MapData';
-import { OrderType } from './model/Order';
 import { SeasonEnum, PhaseEnum, Turn } from './model/Turn';
 
 const initial = {
@@ -15,12 +14,12 @@ const initial = {
     phase: {
       type: PhaseEnum.Order,
       orders: [
-        {
-          type: OrderType.Convoy,
-          from: { id: "bud" },
-          to: { id: "cly" },
-          transport: { id: "tys" },
-        }
+        // {
+        //   type: OrderType.Convoy,
+        //   from: { id: "bud" },
+        //   to: { id: "cly" },
+        //   transport: { id: "tys" },
+        // }
       ]
     }
   } as Turn,

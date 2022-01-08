@@ -11,10 +11,7 @@ import { StagingLine } from "./StagingLine";
 
 const viewBox = { a: { x: 0, y: 0 }, b: { x: 610, y: 560 } }
 
-export type MapDisplayProps = {
-  readonly onAreaEnter?: (id: string) => void;
-  readonly onAreaLeave?: (id: string) => void;
-}
+export type MapDisplayProps = { }
 
 export const MapDisplay: React.FC<MapDisplayProps> = props => {
   const areas = useStore(state => state.map.areas);
@@ -25,10 +22,7 @@ export const MapDisplay: React.FC<MapDisplayProps> = props => {
     <svg viewBox={`${viewBox.a.x} ${viewBox.a.y} ${viewBox.b.x} ${viewBox.b.y}`}>
       {/* SHAPES */}
       {areaEntries.map(([id]) =>
-        <MapArea key={id}
-          id={id}
-          onMouseEnter={props.onAreaEnter?.bind(null, id)}
-          onMouseLeave={props.onAreaLeave?.bind(null, id)} />
+        <MapArea key={id} id={id}/>
       )}
       {/* RETREATING UNITS */}
       {areaEntries.map(([id, area]) =>

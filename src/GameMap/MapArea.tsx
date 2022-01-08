@@ -3,15 +3,15 @@ import { Box } from "@mui/material";
 import { useStore } from "../Store";
 import { AreaType } from "../model/Area";
 
-export type MapAreaProps = {
-  readonly id: string;
-  readonly onMouseEnter?: () => void;
-  readonly onMouseLeave?: () => void;
-}
+export type MapAreaProps = { readonly id: string; }
 
 export const MapArea: React.FC<MapAreaProps> = props => {
   const area = useStore(state => state.map.areas[props.id])
   const players = useStore(state => state.players)
+  const setHovered = useStore(state => state.setHovered);
+
+  const onPointerDown = () => { }
+  const onPointerUp = () => { }
 
   const fill = React.useMemo(
     () => {
@@ -31,12 +31,11 @@ export const MapArea: React.FC<MapAreaProps> = props => {
 
   return (
     <Box component='path'
-      sx={{
-        fill, stroke: 'black',
-        ':hover': { filter: 'brightness(90%)' }
-      }}
+      sx={{ fill, stroke: 'black', ':hover': { filter: 'brightness(90%)' } }}
       d={area.path}
-      onMouseEnter={props.onMouseEnter}
-      onMouseLeave={props.onMouseLeave} />
+      onPointerEnter={setHovered.bind(null, props.id)}
+      onPointerLeave={setHovered.bind(null, undefined)}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp} />
   );
 }
